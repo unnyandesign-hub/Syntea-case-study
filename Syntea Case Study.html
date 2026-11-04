@@ -566,7 +566,10 @@ figcaption{font:500 12px/16px var(--font);color:var(--mute);margin-top:8px;paddi
 .evo-foot{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .evo-foot .acts{display:flex;gap:8px;flex-wrap:wrap}
 .evo-foot button{font:600 14px/20px var(--font);background:var(--card);border:0;color:var(--ink);border-radius:9999px;padding:8px 14px;cursor:pointer;box-shadow:var(--sh-card)}
-.evo-foot button.dark{background:var(--ink);color:#fff}
+.evo-live{display:flex;align-items:center;gap:8px;font:500 13px/20px var(--font);color:var(--mute)}
+.evo-live i{width:8px;height:8px;border-radius:9999px;background:var(--success);animation:evoPulse 1.6s var(--ease) infinite}
+.evo-live.paused i{background:var(--warm);animation:none}
+@keyframes evoPulse{0%,100%{opacity:1}50%{opacity:.3}}
 @media (max-width:1000px){.td-main{grid-template-columns:64px minmax(0,1fr)}.td-list{display:none}.td-nav{display:none}}
 @media (max-width:620px){.td-main{grid-template-columns:minmax(0,1fr)}.td-rail{display:none}.td-right span{display:none}.td-search{display:none}.td-msgs{padding:16px 12px}.td-compose{padding:6px 12px 12px}.td-sugg{margin-left:0}.tdk{height:640px}.td-tabs{margin-left:12px}.td-cbox .ics{display:none}}
 
@@ -1173,7 +1176,7 @@ figcaption{font:500 12px/16px var(--font);color:var(--mute);margin-top:8px;paddi
         </div></div>
         <div class="evo-foot">
           <p class="small">Your own name stays; colleagues, documents and answers are invented stand ins.</p>
-          <div class="acts"><button type="button" id="evoPlay" class="dark">▶ Play the evolution</button><button type="button" id="evoReset">Start over</button></div>
+          <p class="evo-live" id="evoLive" aria-live="polite"><i></i><span>Playing on a loop. Type or tap a reply to pause it.</span></p>
         </div>
       </div>
 
@@ -1544,7 +1547,7 @@ b.addEventListener('click',function(){var l=b.querySelector('span');try{navigato
   var roleEl=document.getElementById('evoRole'), lvlEl=document.getElementById('evoLvl'), bar=document.getElementById('evoBar'), noteEl=document.getElementById('evoNote'), hint=document.getElementById('tdHint');
   var steps=root.querySelectorAll('.evo-steps button'), traits=root.querySelectorAll('#evoTraits span');
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var cur=0, busy=false, timers=[], playing=false, seen={};
+  var cur=0, busy=false, timers=[], looping=true, visible=false, idleT=null, pending=null, seen={};
   var BOT='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 4h10l12 12-12 12H5l12-12Z" fill="#2B6CF6"/><path d="M5 4h10l6 6-6 6H5l6-6Z" fill="#7AA7FF"/></svg>';
   var DL='<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9 2h2v8.2l3-3 1.4 1.4L10 14 4.6 8.6 6 7.2l3 3Z"/><path d="M3 15h14v2H3z"/></svg>';
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -1695,26 +1698,27 @@ b.addEventListener('click',function(){var l=b.querySelector('span');try{navigato
     run(ST[i].script,function(){seen[i]=true;meter(i);sugg(ST[i].sugg);if(cb)cb();});
   }
   function send(text){
+    pause();
     if(busy) return;
     var o=document.getElementById('tdSugg');if(o)o.remove();
     addMsg('me','text',text,true);
     var r=reply(intent(text),text);
     run(r.m.map(function(x){return ['bot',x[0],x[1]];}),function(){sugg(r.s);});
   }
-  form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;inp.value='';stop();send(v);});
+  form.addEventListener('submit',function(e){e.preventDefault();var v=inp.value.trim();if(!v)return;inp.value='';send(v);});
+  inp.addEventListener('input',pause);
   box.addEventListener('click',function(e){var b=e.target.closest('button,a');if(!b||!box.contains(b))return;
     if(b.dataset.toast){e.preventDefault();toast(b.dataset.toast);if(b.tagName==='BUTTON')b.disabled=true;}
-    if(b.dataset.say){stop();send(b.dataset.say);}});
-  steps.forEach(function(b){b.addEventListener('click',function(){stop();go(+b.dataset.st);});});
-  var playBtn=document.getElementById('evoPlay');
-  function stop(){if(playing){playing=false;playBtn.textContent='▶ Play the evolution';}}
-  playBtn.addEventListener('click',function(){
-    if(playing){stop();return;}
-    playing=true;playBtn.textContent='❚❚ Pause';
-    (function step(i){if(!playing)return;go(i,function(){if(!playing)return;if(i<ST.length-1)timers.push(setTimeout(function(){step(i+1);},reduce?400:2200));else stop();});})(cur===ST.length-1?0:cur);
-  });
-  document.getElementById('evoReset').addEventListener('click',function(){stop();seen={};go(0);});
-  go(0);
+    if(b.dataset.say){send(b.dataset.say);}});
+  var live=document.getElementById('evoLive'), liveTx=live.querySelector('span'), HOLD=reduce?1500:3200, IDLE=20000;
+  function setLive(on){live.classList.toggle('paused',!on);liveTx.textContent=on?'Playing on a loop. Type or tap a reply to pause it.':'Paused while you chat. The loop starts again after 20 seconds.';}
+  function auto(i){looping=true;setLive(true);if(i===0)seen={};go(i,function(){if(!looping)return;timers.push(setTimeout(function(){next((i+1)%ST.length);},HOLD));});}
+  function next(i){if(!looping)return;if(!visible){pending=i;return;}auto(i);}
+  function pause(){if(looping){looping=false;clear();typing(false);busy=false;setLive(false);}clearTimeout(idleT);idleT=setTimeout(function(){if(document.activeElement===inp&&inp.value)return pause();auto((cur+1)%ST.length);},IDLE);}
+  steps.forEach(function(b){b.addEventListener('click',function(){clearTimeout(idleT);auto(+b.dataset.st);});});
+  var started=false;
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){visible=en[0].isIntersecting;if(visible&&!started){started=true;auto(0);}else if(visible&&pending!=null&&looping){var k=pending;pending=null;auto(k);}},{threshold:.25}).observe(document.getElementById('tdk'));}
+  else{visible=true;started=true;auto(0);}
 })();
 </script>
 
