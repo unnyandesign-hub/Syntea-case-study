@@ -150,7 +150,7 @@ section[id]{scroll-margin-top:24px}
 .finding p{font-size:14px;line-height:20px;font-weight:500}
 
 /* process */
-.phases{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 .phase{border:0;background:var(--card);border-radius:16px;padding:12px 10px;text-align:left;cursor:pointer;box-shadow:var(--sh-card);display:flex;flex-direction:column;gap:8px;min-height:96px;transition:transform 300ms var(--ease),background 300ms var(--ease)}
 .phase:hover{transform:translateY(-2px)}
 .phase .num{font-size:18px;color:var(--acc)}
@@ -168,7 +168,46 @@ section[id]{scroll-margin-top:24px}
 .phase-panel p{margin-top:6px}
 .phase-panel .find{background:var(--ink);color:#fff}
 .phase-panel .find h4{color:var(--warm)}
-@media (max-width:560px){.phases{grid-template-columns:repeat(3,minmax(0,1fr))}.weeks span{font-size:9px}}
+@media (max-width:560px){.weeks span{font-size:9px}}
+
+/* sprints */
+.sprints{padding:20px;display:flex;flex-direction:column;gap:14px}
+.sp-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.sp-top b{font-size:16px}
+.cadence{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cadence span{font-size:12px;line-height:16px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--option-tint);color:var(--ink-soft);transition:background 300ms var(--ease),color 300ms var(--ease)}
+.cadence i{font-style:normal;color:var(--mute-light);font-size:12px}
+.cadence span.on{background:var(--acc);color:#fff}
+.sp-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sp-body > div{background:var(--option-tint);border-radius:12px;padding:12px 14px;animation:whyIn 400ms var(--ease) both}
+.sp-body > div:nth-child(2){animation-delay:50ms}.sp-body > div:nth-child(3){animation-delay:100ms}.sp-body > div:nth-child(4){animation-delay:150ms}
+.sp-body h4{font-size:12px;line-height:16px;font-weight:600;color:var(--mute)}
+.sp-body p{font-size:14px;line-height:20px;margin-top:4px}
+.sp-body .goal{grid-column:1 / -1;background:var(--blue-tint)}
+.sp-body .goal h4{color:var(--acc)}
+.sp-body .goal p{font-size:16px;line-height:24px;font-weight:600}
+.sp-body .dir{grid-column:1 / -1;background:var(--ink);color:#fff}
+.sp-body .dir h4{color:var(--warm)}
+.sp-track{height:6px;border-radius:999px;background:var(--option-tint);overflow:hidden}
+.sp-track i{display:block;height:100%;width:33.3%;background:var(--acc);border-radius:999px;transition:width 600ms var(--ease)}
+@media (max-width:560px){.sp-body{grid-template-columns:1fr}}
+
+/* Mira's log */
+.log{display:flex;flex-direction:column;gap:6px;border-radius:16px;background:var(--option-tint);padding:12px}
+.log-h{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;line-height:16px;font-weight:600;color:var(--mute)}
+.log-h .num{color:var(--acc);font-size:14px}
+.log-bar{height:6px;border-radius:999px;background:#fff;overflow:hidden}
+.log-bar i{display:block;height:100%;background:var(--success);border-radius:999px;transition:width 600ms var(--ease)}
+.log ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.log li{display:grid;grid-template-columns:20px 44px minmax(0,1fr);gap:8px;align-items:center;font-size:13px;line-height:18px;padding:6px 8px;border-radius:10px;background:#fff;color:var(--mute-light);transition:color 300ms var(--ease)}
+.log li .ck{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:10px;color:transparent;transition:all 300ms var(--ease)}
+.log li .t{font-family:var(--dot);font-weight:700;font-size:12px}
+.log li.done{color:var(--ink)}
+.log li.done .ck{background:var(--success);border-color:var(--success);color:#fff}
+.log li.done .t{color:var(--acc)}
+.day-play{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;background:var(--ink);color:#fff;font:600 13px/16px var(--sans)}
+.moment .prob{font-size:12px;line-height:16px;font-weight:600;color:#A4262C;background:#FDECEE;display:inline-flex;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+@media (max-width:560px){.log ol{grid-template-columns:1fr}}
 
 /* tabs, accordions */
 .tabs{display:flex;gap:6px;padding:4px;border-radius:999px;background:var(--chip-tint);width:max-content;max-width:100%;overflow-x:auto}
@@ -344,7 +383,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
   .lean-scroll{-webkit-mask-image:none;mask-image:none}
   .lean-hint{display:none}
 }
-@media (min-width:1180px){.lean{width:min(1040px,calc(100vw - 320px))}}
+@media (min-width:1180px){.lean{width:min(940px,calc(100vw - 300px))}}
 .annot{grid-template-columns:1fr!important}
 .td-main{grid-template-columns:60px 214px minmax(0,1fr)}
 .t-main{grid-template-columns:60px 228px minmax(0,1fr)}
@@ -446,12 +485,21 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 
 <section class="gutter" id="process">
   <div class="wrap chapter">
-    <span class="eyebrow">My process · 12 weeks</span>
-    <h2 class="step-h">Twelve weeks, six moves.</h2>
-    <p class="step-p">The DPS loop: explore, reframe as a question, test cheaply, build. Tap a phase to see what I did and what I took from it.</p>
+    <span class="eyebrow">My process · Agile Scrum, 12 weeks</span>
+    <h2 class="step-h">Twelve weeks, three sprints.</h2>
+    <p class="step-p">DPS runs on Agile Scrum with weekly sprints. After onboarding and interviews, three sprints of ideating and iterating gave us the direction for the bot. The last weeks went into building, testing and reframing it. Tap a phase.</p>
     <div class="phases" role="tablist" aria-label="Phases" id="phases"></div>
     <div class="weeks" id="weeks" aria-hidden="true"></div>
     <div class="phase-panel" id="phasePanel" aria-live="polite"></div>
+    <div class="card sprints">
+      <div class="sp-top"><b>The three sprints</b>
+        <div class="cadence" aria-label="Every sprint ran the same four meetings"><span>What</span><i>→</i><span>How</span><i>→</i><span>Review</span><i>→</i><span>Retro</span></div>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Sprints" id="spTabs"><button type="button" role="tab" aria-selected="true" data-s="0">Sprint 1 · Fake it</button><button type="button" role="tab" aria-selected="false" data-s="1">Sprint 2 · A real bot</button><button type="button" role="tab" aria-selected="false" data-s="2">Sprint 3 · Click dummy</button></div>
+      <div class="sp-body" id="spBody" aria-live="polite"></div>
+      <div class="sp-track" aria-hidden="true"><i id="spFill"></i></div>
+    </div>
+    <div class="finding"><span class="num">Finding</span><p>Each sprint answered one risky question cheaply. Together they turned “a chatbot for onboarding” into three rules: give value first, give every answer an address, and hand off when it doesn’t know.</p></div>
   </div>
 </section>
 
@@ -459,16 +507,14 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
   <div class="wrap chapter">
     <span class="eyebrow">Use case · A day one</span>
     <h2 class="step-h">Mira’s first day, hour by hour.</h2>
-    <p class="step-p">Built from our interview quotes. Tap an hour, then switch the day to see what changes when Syntea is in her Teams.</p>
+    <p class="step-p">Mira joins as a Sales Advisor. Every hour of day one brings a problem our interviewees described. Here is how she gets each one done with Syntea in her Teams. It plays on its own; tap an hour to jump.</p>
     <div class="card day">
-      <div class="day-top"><b>Monday · Sales Advisor, week 1</b>
-        <div class="tabs" role="tablist" aria-label="Which day"><button type="button" role="tab" aria-selected="true" data-mode="without">Without Syntea</button><button type="button" role="tab" aria-selected="false" data-mode="with">With Syntea</button></div>
-      </div>
+      <div class="day-top"><b>Monday · Sales Advisor, week 1</b><button type="button" class="day-play" id="dayPlay" aria-pressed="true">❚❚ Pause</button></div>
       <div class="hours" id="hours"></div>
-      <div class="mood" aria-label="How Mira feels through the day"><svg id="moodSvg" viewBox="0 0 600 120" role="img" aria-label="Mood line through the day"></svg></div>
       <div class="moment" id="moment" aria-live="polite"></div>
+      <div class="log" aria-label="Mira’s log for the day"><div class="log-h"><span>Mira’s log</span><span><span class="num" id="logN">0</span> of 6 done</span></div><div class="log-bar"><i id="logBar" style="width:0"></i></div><ol id="logList"></ol></div>
     </div>
-    <div class="finding"><span class="num">Finding</span><p>Every hard moment of day one is a question nobody answered fast enough. The fix is not more documents; it is someone to ask.</p></div>
+    <div class="finding"><span class="num">Finding</span><p>Every hard moment of day one is a question nobody answered fast enough. The fix is not more documents. It is someone to ask, who answers in the chat she already has open.</p></div>
   </div>
 </section>
 
@@ -505,7 +551,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 
 <section class="gutter" id="define">
   <div class="wrap chapter">
-    <span class="eyebrow">Define · Week 5</span>
+    <span class="eyebrow">Define · Weeks 2 to 3</span>
     <h2 class="step-h">One question, one canvas.</h2>
     <p class="step-p">The client hoped for upskilling. Our evidence pointed at onboarding: people care about learning once they know what their manager expects. We kept one question and tested the business around it.</p>
     <div class="hmw"><span class="label">How might we</span><p>Help a new hire be productive sooner, without more work for the people onboarding them?</p><span>Onboarding that runs in the chat they already use, and never makes them ask a colleague the same question twice.</span></div>
@@ -524,7 +570,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 
 <section class="gutter" id="learns">
   <div class="wrap chapter">
-    <span class="eyebrow">Build and test · Weeks 6 to 8</span>
+    <span class="eyebrow">Sprints 2 and 3 · Sep to Oct 2024</span>
     <h2 class="step-h">How the bot learned to talk.</h2>
     <p class="step-p">A rebuild of our real Onboardly thread in the client’s Teams tenant. Four test rounds took it from handing out spreadsheets to starting the conversation itself. It plays on a loop; type to talk to it.</p>
     {{EVO_HTML}}
@@ -575,7 +621,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
   <div class="wrap chapter">
     <span class="eyebrow">Outcome</span>
     <h2 class="step-h">Onboardly stalled. Syntea didn’t.</h2>
-    <p class="step-p">In week 7 the client pulled the scope back toward upskilling, and our onboarding track was put on hold. The bets we tested lived on: Syntea’s onboarding agent in Teams, proactive, personal and grounded in company content, shown on stage by Microsoft’s CEO.</p>
+    <p class="step-p">In the final weeks the client pulled the scope back toward upskilling, and our onboarding track was put on hold before we shipped it. The bets we tested lived on: Syntea’s onboarding agent in Teams, proactive, personal and grounded in company content, shown on stage by Microsoft’s CEO.</p>
     <div class="stills">
       <figure><img src="still-20.jpg" alt="On stage: a Teams notification from Syntea greets a new hire at the end of her first week"><figcaption>Speaks first: a proactive Teams message</figcaption></figure>
       <figure><img src="still-26.jpg" alt="On stage: a personal onboarding plan in Teams"><figcaption>A plan built for the person</figcaption></figure>
@@ -623,7 +669,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 var WHY={
   role:['Conversational UX and UI','The only designer on a team of five. I owned how the agent talks, what it shows in Teams, and the research behind both.'],
   owned:['End to end, in the chat','Interviews and synthesis, the persona and intents, flows and copy, Adaptive Card layouts, the click dummy and the Onboardly identity.'],
-  time:['12 weeks, Batch 22','9 September to 29 November 2024 at Digital Product School, Munich, with weekly reviews with the client.'],
+  time:['12 weeks, Batch 22','9 September to 29 November 2024 at Digital Product School, Munich, Agile Scrum with weekly sprints and a review with the client every sprint.'],
   output:['A Copilot agent, not an app','It lives in Teams, uses Copilot for language and answers from company files. No new tool to learn.'],
   brief:['An open brief','The client already ran Syntea for students. They asked us where it could create value for employees, and to prove it in Microsoft Teams.'],
   start:['A research roadmap first','We split what we knew from what we assumed, wrote one hypothesis per target group, and interviewed for each before proposing anything.']
@@ -651,12 +697,9 @@ egg.addEventListener('click',function(){var o=ep.hidden;ep.hidden=!o;egg.setAttr
 
 /* process */
 var PH=[
-  ['Research roadmap','W1',[0],'Split what we knew from what we assumed; wrote one hypothesis per target group.','Research roadmap canvas, desk research','The riskiest assumptions go first.'],
-  ['Bull’s Eye interviews','W2–3',[1,2],'Interviewed new joiners, onboarding managers and trainers from our networks and the client’s side.','Bull’s Eye problem interviews, four researchers','The pain sits in onboarding, more than upskilling.'],
-  ['Pain mapping','W4',[3],'Clustered every sticky from the merged Bull’s Eye into six themes, then wrote personas.','Affinity mapping, personas','The cost of onboarding is social.'],
-  ['Define','W5',[4],'Ran “Wouldn’t it be great if”, voted on How Might We questions, wrote value propositions and a Lean DPS Canvas.','WIBG, HMW, ad lib value props, Lean Canvas','One question for both the manager and the new hire.'],
-  ['Build and test','W6–8',[5,6,7],'Faked the bot in Slack, stood up a real agent in Teams, then story mapped and tested a click dummy.','Wizard of Oz, Teams proof of concept, story map','The first turn decides everything.'],
-  ['Reframe','W9–12',[8,9,10,11],'Reframed toward an upskilling report with consent prompts when the client widened the scope; the track was then put on hold.','Concept reframe, stakeholder reviews','Get the problem co-signed early.']
+  ['Onboarding and interviews','W1–3',[0,1,2],'DPS onboarding and training, then a research roadmap and Bull’s Eye problem interviews with new joiners, onboarding managers and trainers. We clustered them into six pain themes and two personas.','Research roadmap canvas, Bull’s Eye interviews, affinity mapping, personas, HMW','The pain sits in onboarding, more than upskilling, and its cost is social.'],
+  ['Three sprints','W4–8',[3,4,5,6,7],'Three sprints to ideate and iterate. Each one tested the riskiest open question with the cheapest thing we could put in front of people, and ended with a client review and a retro.','Scrum: What, How, Review and Retro every sprint. Wizard of Oz, a live Teams bot, a story-mapped click dummy','The sprints set the rules the bot is built on. The three sprints are below.'],
+  ['Build, test, reframe','W9–12',[8,9,10,11],'Built and tested the agent and its flows, then reframed toward an upskilling report when the client widened the scope. We didn’t ship it ourselves; the keynote shows the product we had in mind.','Usability tests, stakeholder reviews, concept reframe','Get the problem co-signed early, and design for the moment the AI doesn’t know.']
 ];
 var phEl=document.getElementById('phases'),wkEl=document.getElementById('weeks'),ppEl=document.getElementById('phasePanel');
 for(var w=1;w<=12;w++){var s=document.createElement('span');s.textContent='W'+w;wkEl.appendChild(s);}
@@ -665,6 +708,19 @@ function phase(i){var p=PH[i];phEl.querySelectorAll('.phase').forEach(function(b
   wkEl.querySelectorAll('span').forEach(function(s,j){s.classList.toggle('on',p[2].indexOf(j)>-1);});
   ppEl.innerHTML='<div class="card"><h4>What I did</h4><p>'+p[3]+'</p></div><div class="card"><h4>Methods</h4><p>'+p[4]+'</p></div><div class="card find"><h4>What I took from it</h4><p>'+p[5]+'</p></div>';}
 phase(0);
+
+/* sprints */
+var SP=[
+ {g:'Would new hires ask a bot what they won’t ask a colleague?',h:'We faked the bot. Testers messaged “Onboardly” in our team’s Slack while one of us answered by hand, then we reviewed the transcripts with the client.',b:'Wizard of Oz test in Slack',l:'Testers asked everyday questions without hesitation. But a correct answer without a link was still a dead end.',d:'Q&A at the core, and every answer ends with the exact place to go and its source.'},
+ {g:'Does the conversation hold up inside Teams, with Copilot behind it?',h:'Our engineers stood up a working agent in the client’s Teams tenant. I designed its flows and copy, and we tested it with Teams accounts and sample company data.',b:'A live Onboardly bot in Teams',l:'Its first message asked for nine profile fields, and its plans arrived as spreadsheets that sent people out of Teams.',d:'Confirm what the Teams profile knows and ask one question. Show plans as cards, edited by message.'},
+ {g:'Can a manager plan three hires end to end, and trust the result?',h:'We story mapped the manager scenario in story, risk and task lanes. I built it as a click dummy and we ran design critique and user tests.',b:'Story-mapped click dummy',l:'Managers need to see which document each part of a plan came from, edits must change only that part, and new hires want one day at a time.',d:'Sources on every plan, targeted edits by message, and a day-by-day view for the new hire.'}
+];
+var spBody=document.getElementById('spBody'),spFill=document.getElementById('spFill'),cad=[].slice.call(document.querySelectorAll('.cadence span'));
+function sprint(i){var x=SP[i];document.querySelectorAll('#spTabs button').forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');});
+  spFill.style.width=((i+1)/3*100)+'%';
+  spBody.innerHTML='<div class="goal"><h4>Sprint '+(i+1)+' question</h4><p>'+x.g+'</p></div><div><h4>How we ran it</h4><p>'+x.h+'</p></div><div><h4>What we learned</h4><p>'+x.l+'</p></div><div class="dir"><h4>Direction it set · '+x.b+'</h4><p>'+x.d+'</p></div>';}
+document.querySelectorAll('#spTabs button').forEach(function(b){b.addEventListener('click',function(){sprint(+b.dataset.s);});});sprint(0);
+var ci=0;setInterval(function(){cad.forEach(function(c,j){c.classList.toggle('on',j===ci);});ci=(ci+1)%4;},1200);
 
 /* a day one */
 var P='#5B5FC7',PL='#C5C8F2',SK='#F2C9A8',HR='#3A2A22';
@@ -696,21 +752,20 @@ var HOURS=[
   w:['Unsure what’s expected','She leaves without knowing whether day one went well.',1,'<div class="bb gray">No messages</div>'],
   s:['A recap, and tomorrow','Three things done, one thing tomorrow, and a note to Isabelle.',4,'<div class="bb">Nice first day. Done: setup, Time Tracker, hello to Kevin. Tomorrow: CRM with Kevin at 10:00.</div>']}
 ];
-var mode='without',hi=0,hoursEl=document.getElementById('hours'),momEl=document.getElementById('moment'),moodSvg=document.getElementById('moodSvg');
-HOURS.forEach(function(h,i){var b=document.createElement('button');b.type='button';b.className='hour';b.innerHTML='<span class="pic">'+scene(h.k)+'</span><span class="t">'+h.t+'</span><b>'+h.h+'</b>';b.addEventListener('click',function(){hi=i;renderDay();});hoursEl.appendChild(b);});
-function pts(key){return HOURS.map(function(h,i){return [50+i*100,100-h[key][2]*20];});}
-function path(p){return p.map(function(q,i){return (i?'L':'M')+q[0]+' '+q[1];}).join(' ');}
+var hi=0,hoursEl=document.getElementById('hours'),momEl=document.getElementById('moment'),logList=document.getElementById('logList'),dayPlay=document.getElementById('dayPlay'),dayT=null,dayOn=true;
+var DONE=['Day planned','Hours logged','Met her buddy','CRM session booked','HR asked for her','Day wrapped up'];
+HOURS.forEach(function(h,i){var b=document.createElement('button');b.type='button';b.className='hour';b.innerHTML='<span class="pic">'+scene(h.k)+'</span><span class="t">'+h.t+'</span><b>'+h.h+'</b>';b.addEventListener('click',function(){hi=i;renderDay();if(dayOn)loopDay();});hoursEl.appendChild(b);
+  var li=document.createElement('li');li.innerHTML='<span class="ck">✓</span><span class="t">'+h.t+'</span><span>'+DONE[i]+'</span>';logList.appendChild(li);});
 function renderDay(){
   hoursEl.querySelectorAll('.hour').forEach(function(b,i){b.setAttribute('aria-pressed',i===hi?'true':'false');});
-  var key=mode==='with'?'s':'w',m=HOURS[hi][key],a=pts('w'),b=pts('s'),cur=key==='s'?b:a;
-  moodSvg.innerHTML='<text x="4" y="22" font-size="10" font-family="Geist,sans-serif" fill="#6B6875">Confident</text><text x="4" y="104" font-size="10" font-family="Geist,sans-serif" fill="#6B6875">Lost</text>'+
-   '<path d="'+path(a)+'" fill="none" stroke="'+(key==='w'?'#E5484D':'#D9D9E3')+'" stroke-width="2.5" stroke-dasharray="'+(key==='w'?'0':'4 4')+'"/>'+
-   '<path d="'+path(b)+'" fill="none" stroke="'+(key==='s'?'#5B5FC7':'#D9D9E3')+'" stroke-width="2.5" stroke-dasharray="'+(key==='s'?'0':'4 4')+'"/>'+
-   '<circle cx="'+cur[hi][0]+'" cy="'+cur[hi][1]+'" r="6" fill="'+(key==='s'?'#5B5FC7':'#E5484D')+'" stroke="#fff" stroke-width="2"/>';
-  momEl.innerHTML='<div><span class="label">'+HOURS[hi].t+(key==='s'?' · with Syntea':' · without Syntea')+'</span><h4>'+m[0]+'</h4><p>'+m[1]+'</p><span class="feel '+(m[2]>=3?'good':'bad')+'">'+(m[2]>=3?'Feels looked after':'Feels lost')+'</span></div><div class="tmini"><div class="tb-h"><i></i>'+(key==='s'?'Syntea · Teams':'Teams')+'</div>'+m[3]+'</div>';
+  logList.querySelectorAll('li').forEach(function(l,i){l.classList.toggle('done',i<=hi);});
+  document.getElementById('logN').textContent=hi+1;document.getElementById('logBar').style.width=((hi+1)/6*100)+'%';
+  var h=HOURS[hi];
+  momEl.innerHTML='<div><span class="label">'+h.t+' · the problem</span><h4>'+h.w[0]+'</h4><p>'+h.w[1]+'</p><span class="label" style="display:block;margin-top:14px">How she gets it done</span><p style="margin-top:4px;color:var(--ink)"><b>'+h.s[0]+'.</b> '+h.s[1]+'</p><span class="feel good">✓ '+DONE[hi]+'</span></div><div class="tmini"><div class="tb-h"><i></i>Syntea · Teams · '+h.t+'</div>'+h.s[3]+'</div>';
 }
-document.querySelectorAll('#day .tabs button').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;document.querySelectorAll('#day .tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false');});renderDay();});});
-renderDay();
+function loopDay(){clearInterval(dayT);dayT=setInterval(function(){hi=(hi+1)%HOURS.length;renderDay();},4200);}
+dayPlay.addEventListener('click',function(){dayOn=!dayOn;dayPlay.setAttribute('aria-pressed',dayOn?'true':'false');dayPlay.textContent=dayOn?'❚❚ Pause':'▶ Play the day';if(dayOn)loopDay();else clearInterval(dayT);});
+renderDay();loopDay();
 
 /* pain map */
 var PAINS=[
