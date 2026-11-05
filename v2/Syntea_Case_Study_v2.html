@@ -613,9 +613,25 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 
 /* fit the reused parts into the 680px column */
 .pframe .teams{height:620px}
-.lean{margin:0}
-@media (min-width:821px){.lean{width:auto;margin-left:0}}
-@media (min-width:1440px){.lean{width:1040px;margin-left:-180px}}
+/* the canvas: fits the width on desktop, scrolls with faded edges on small screens */
+.lean{margin:0;display:flex;flex-direction:column;gap:8px}
+.lean-scroll{-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,var(--fl,1)) 0,#000 56px,#000 calc(100% - 72px),rgba(0,0,0,var(--fr,0)) 100%);mask-image:linear-gradient(90deg,rgba(0,0,0,var(--fl,1)) 0,#000 56px,#000 calc(100% - 72px),rgba(0,0,0,var(--fr,0)) 100%);scrollbar-width:thin}
+.lean-board{min-width:860px}
+.lean .ln{font-size:1.15cqw;line-height:1.28}
+.lean .ln.uvp{font-size:.88cqw}
+.lean .lz.row .ln{font-size:.98cqw}
+.lean .lz.row:nth-last-child(-n+2) .ln{font-size:1.15cqw}
+.lean .ln.ai{font-size:.86cqw;line-height:1.22}
+.lean-hint{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:12px;line-height:16px;font-weight:600;color:var(--acc);background:var(--blue-tint);padding:4px 10px;border-radius:999px}
+.lean-hint i{font-style:normal;display:inline-block;animation:nudge 1.4s var(--ease) infinite}
+@keyframes nudge{50%{transform:translateX(4px)}}
+@media (min-width:900px){
+  .lean{width:min(1040px,calc(100vw - 48px));position:relative;left:50%;transform:translateX(-50%)}
+  .lean-board{min-width:0}
+  .lean-scroll{-webkit-mask-image:none;mask-image:none}
+  .lean-hint{display:none}
+}
+@media (min-width:1180px){.lean{width:min(1040px,calc(100vw - 320px))}}
 .annot{grid-template-columns:1fr!important}
 .td-main{grid-template-columns:60px 214px minmax(0,1fr)}
 .t-main{grid-template-columns:60px 228px minmax(0,1fr)}
@@ -1193,6 +1209,13 @@ function model(){var n=+mR.value,a=auto(n),stored=Math.round(n*(100-a)/100*0.7),
   [0,500,1000,1500,2000].forEach(function(t){g+='<text x="'+X(t)+'" y="170" text-anchor="middle" font-size="10" font-family="Geist,sans-serif" fill="#6B6875">'+t+'</text>';});
   mC.innerHTML=g+'<path d="'+d+' L580 150 L40 150Z" fill="rgba(91,95,199,.10)"/><path d="'+d+'" fill="none" stroke="#5B5FC7" stroke-width="2.5"/><line x1="'+X(n)+'" x2="'+X(n)+'" y1="20" y2="150" stroke="#141217" stroke-dasharray="3 3"/><circle cx="'+X(n)+'" cy="'+Y(a)+'" r="6" fill="#5B5FC7" stroke="#fff" stroke-width="2"/>';}
 mR.addEventListener('input',model);model();
+
+/* lean canvas: fade the edge that has more to scroll */
+var ls=document.querySelector('.lean-scroll');
+if(ls){var cap=ls.parentNode.querySelector('figcaption');var h=document.createElement('span');h.className='lean-hint';h.innerHTML='Scroll sideways to see the whole canvas <i>→</i>';ls.parentNode.insertBefore(h,cap);
+  var fade=function(){var max=ls.scrollWidth-ls.clientWidth;if(max<=1){ls.style.setProperty('--fl',1);ls.style.setProperty('--fr',1);h.hidden=true;return;}h.hidden=false;
+    ls.style.setProperty('--fl',ls.scrollLeft>4?0:1);ls.style.setProperty('--fr',ls.scrollLeft>=max-4?1:0);h.querySelector('i').textContent=ls.scrollLeft>=max-4?'←':'→';};
+  ls.addEventListener('scroll',fade,{passive:true});window.addEventListener('resize',fade);fade();}
 
 /* rail */
 var links=[].slice.call(document.querySelectorAll('.dock a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
