@@ -130,6 +130,7 @@ section[id]{scroll-margin-top:24px}
 .egg{position:absolute;right:16px;top:-18px;transform:rotate(4deg);border:0;cursor:pointer;background:#FFF1A6;color:#2A2618;font:600 12px/16px var(--sans);padding:8px 10px;border-radius:2px;box-shadow:0 1px 1px rgba(0,0,0,.06),0 8px 16px -8px rgba(0,0,0,.35);transition:transform 400ms var(--ease)}
 .egg:hover{transform:rotate(-2deg) translateY(-3px)}
 .egg[aria-expanded="true"]{transform:rotate(0)}
+.egg-panel[hidden]{display:none}
 .egg-panel{display:flex;flex-direction:column;gap:8px;animation:whyIn 400ms var(--ease)}
 .egg-panel .shots{display:grid;grid-template-columns:1.1fr 1fr;gap:8px}
 .egg-panel img{border-radius:12px;width:100%;height:100%;object-fit:cover}
@@ -208,6 +209,87 @@ section[id]{scroll-margin-top:24px}
 .day-play{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;background:var(--ink);color:#fff;font:600 13px/16px var(--sans)}
 .moment .prob{font-size:12px;line-height:16px;font-weight:600;color:#A4262C;background:#FDECEE;display:inline-flex;padding:4px 10px;border-radius:999px;margin-bottom:8px}
 @media (max-width:560px){.log ol{grid-template-columns:1fr}}
+
+/* brief pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pillar{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--sh-card);display:flex;flex-direction:column;gap:6px}
+.pillar .num{color:var(--acc);font-size:18px}
+.pillar b{font-size:15px;line-height:22px}
+.pillar span{font-size:13px;line-height:19px;color:var(--mute)}
+.hypo{font-size:15px;line-height:24px;color:var(--ink-soft);border-left:3px solid var(--acc);padding:2px 0 2px 14px}
+.hypo b{color:var(--acc);font-weight:600}
+@media (max-width:620px){.pillars{grid-template-columns:1fr}}
+
+/* boards from Miro */
+.boards{background:var(--card);border-radius:24px;padding:8px;box-shadow:var(--sh-media);display:flex;flex-direction:column;gap:8px}
+.boards .stage{position:relative;border-radius:16px;overflow:hidden;background:#F1F0F5;aspect-ratio:16/10}
+.boards .stage img{width:100%;height:100%;object-fit:contain;animation:cwIn 500ms var(--ease)}
+@keyframes cwIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.boards .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 8px 6px;flex-wrap:wrap}
+.boards .bar .label{max-width:60ch}
+.thumbs{display:flex;gap:6px}
+.thumbs button{width:52px;height:36px;border-radius:8px;border:0;padding:0;overflow:hidden;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line);opacity:.6;transition:opacity 300ms var(--ease),box-shadow 300ms var(--ease)}
+.thumbs button img{width:100%;height:100%;object-fit:cover}
+.thumbs button[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 2px var(--acc)}
+
+/* problem statements */
+.ps{display:flex;flex-direction:column;gap:8px}
+.ps-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--option-tint)}
+.ps-row b{display:block;font-size:14px;line-height:20px}
+.ps-row span{display:block;font-size:13px;line-height:18px;color:var(--mute)}
+.ps-row.pick{background:var(--blue-tint);box-shadow:inset 0 0 0 1.5px var(--acc)}
+.pill{font-size:12px;line-height:16px;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff;color:var(--mute);white-space:nowrap}
+.pill.y{background:var(--acc);color:#fff}
+
+/* persona */
+.bp{padding:20px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;align-items:center}
+.bp svg{width:100%;height:auto}
+.bp .say{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.bp .say div{border-radius:12px;padding:12px;font-size:13px;line-height:19px}
+.bp .say .do{background:var(--blue-tint)}
+.bp .say .dont{background:var(--option-tint);color:var(--mute)}
+.bp .say h5{margin:0 0 4px;font:600 12px/16px var(--sans);color:var(--ink)}
+@media (max-width:620px){.bp{grid-template-columns:1fr}.bp svg{max-width:200px;margin-inline:auto}.bp .say{grid-template-columns:1fr}}
+.flowchart{background:var(--card);border-radius:16px;padding:12px;overflow-x:auto;margin-top:12px}
+.flowkey{display:flex;flex-wrap:wrap;gap:8px 16px;font:500 12px/16px var(--sans);color:var(--mute);margin-top:8px}
+.flowkey span{display:inline-flex;align-items:center;gap:6px}
+.flowkey i{width:16px;height:12px;border-radius:4px;display:inline-block}
+
+/* under the hood */
+.pipe{padding:20px;display:flex;flex-direction:column;gap:14px}
+.pipe-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pipe-top b{font-size:16px}
+.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;position:relative}
+.layer{border:0;text-align:left;cursor:pointer;border-radius:16px;padding:14px;background:var(--option-tint);display:flex;flex-direction:column;gap:6px;min-height:150px;transition:background 300ms var(--ease),color 300ms var(--ease),transform 300ms var(--ease)}
+.layer:hover{transform:translateY(-2px)}
+.layer .n{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;color:var(--mute)}
+.layer .n em{font-style:normal;font-size:11px;padding:2px 8px;border-radius:999px;background:#fff}
+.layer b{font-size:15px;line-height:20px}
+.layer span{font-size:12.5px;line-height:18px;color:var(--mute)}
+.layer[aria-pressed="true"]{background:#1C1838;color:#fff}
+.layer[aria-pressed="true"] span,.layer[aria-pressed="true"] .n{color:#C9BFE0}
+.layer[aria-pressed="true"] .n em{background:var(--acc);color:#fff}
+.packet{height:6px;border-radius:999px;background:var(--option-tint);position:relative;overflow:hidden}
+.packet i{position:absolute;top:0;bottom:0;width:25%;border-radius:999px;background:var(--acc);transition:left 700ms var(--ease)}
+.trace{font-family:var(--teams);font-size:13px;line-height:1.45;background:#F5F5F5;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.trace .tl{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;color:#616161;animation:whyIn 400ms var(--ease) both}
+.trace .tl b{color:#242424;font-weight:600}
+.trace .tl code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;background:#fff;border-radius:4px;padding:1px 5px;color:#4F52B2}
+.learnmap{display:flex;flex-direction:column;gap:8px}
+.lm{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1.3fr);gap:10px;align-items:center}
+.lm .from{background:var(--card);border-radius:14px;padding:12px 14px;box-shadow:var(--sh-card)}
+.lm .from .num{color:var(--acc);font-size:14px}
+.lm .from b{display:block;font-size:14px;line-height:20px}
+.lm .arrow{color:var(--acc);text-align:center;font-weight:600}
+.lm .to{background:var(--blue-tint);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:19px}
+.lm .to b{color:var(--acc)}
+@media (max-width:620px){.layers{grid-template-columns:1fr 1fr}.lm{grid-template-columns:1fr}.lm .arrow{transform:rotate(90deg)}}
+
+/* team photo */
+.faces{display:flex;flex-direction:column;gap:8px}
+.faces .row{display:flex;gap:6px}
+.faces .row img{width:20%;aspect-ratio:1;object-fit:cover;border-radius:14px;flex:1 1 0;min-width:0;transition:transform 400ms var(--ease)}
+.faces .row img:hover{transform:translateY(-3px) rotate(-1deg)}
 
 /* tabs, accordions */
 .tabs{display:flex;gap:6px;padding:4px;border-radius:999px;background:var(--chip-tint);width:max-content;max-width:100%;overflow-x:auto}
@@ -393,7 +475,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 </style>
 
 <nav class="dock" aria-label="Sections">
-  <a href="#top">Overview</a><a href="#problem">The problem</a><a href="#process">Process</a><a href="#day">A day one</a><a href="#pains">Pain map</a><a href="#people">People</a><a href="#define">Define</a><a href="#decisions">Decisions</a><a href="#learns">It learns</a><a href="#try">Try it</a><a href="#data">Data loop</a><a href="#stage">On stage</a><a href="#words">Words</a><a href="#learnings">Learnings</a>
+  <a href="#top">Overview</a><a href="#problem">The problem</a><a href="#process">Process</a><a href="#day">A day one</a><a href="#pains">Pain map</a><a href="#people">People</a><a href="#define">Define</a><a href="#decisions">Decisions</a><a href="#hood">Under the hood</a><a href="#learns">It learns</a><a href="#try">Try it</a><a href="#data">Data loop</a><a href="#stage">On stage</a><a href="#words">Words</a><a href="#learnings">Learnings</a>
 </nav>
 
 <header class="gutter head" id="top">
@@ -456,6 +538,7 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
           </div>
         </div>
       </div>
+      <div class="faces"><span class="label">Week 2, the five of us in a Slack huddle</span><div class="row"><img src="face-1.webp" alt="Team member in the huddle"><img src="face-2.webp" alt="Team member in the huddle"><img src="face-3.webp" alt="Team member in the huddle"><img src="face-4.webp" alt="Team member in the huddle"><img src="face-5.webp" alt="Team member in the huddle"></div></div>
       <div class="egg-panel" id="eggPanel" hidden>
         <div class="shots"><img src="team-miro.webp" alt="Our Miro research roadmap board, with the client’s kickoff slides and sticky notes on who the users might be"><img src="team-huddle.webp" alt="Five of us in a Slack huddle, working through the board together"></div>
         <p class="small">16 September 2024, 4:12 pm. Week 2: the research roadmap in Miro, the client’s kickoff slides on the left, five of us in a Slack huddle arguing about who hurts most when someone new joins.</p>
@@ -476,6 +559,13 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
       <div class="stat"><span class="num">9</span><span>fields our first live bot asked for, in message one</span></div>
       <div class="stat"><span class="num">1</span><span>question it asks today, after reading the Teams profile</span></div>
     </div>
+    <p class="hypo">The client’s hypothesis: <b>if learning were embedded in the tasks people already do, guided by AI and tied to the company’s OKRs, it would happen implicitly</b> and stay relevant.</p>
+    <div class="pillars" aria-label="The three pillars of the brief">
+      <div class="pillar"><span class="num">01</span><b>Implicit learning</b><span>Learning happens through real tasks and situations, guided by AI.</span></div>
+      <div class="pillar"><span class="num">02</span><b>Continuous feedback</b><span>Regular, context specific feedback keeps people aware of their progress.</span></div>
+      <div class="pillar"><span class="num">03</span><b>Competency measurement</b><span>Ongoing interactions and assessments show what actually improved.</span></div>
+    </div>
+    <p class="small" style="margin-top:-12px">The three pillars of the brief, paraphrased from the client’s kickoff deck. Under the hood shows how each became a bot behaviour.</p>
     <div class="chips">
       <span class="why"><button type="button" class="wchip main" data-why="brief"><i>B</i>The brief</button></span>
       <span class="why"><button type="button" class="wchip" data-why="start"><i>?</i>How I started</button></span>
@@ -499,6 +589,13 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
       <div class="sp-body" id="spBody" aria-live="polite"></div>
       <div class="sp-track" aria-hidden="true"><i id="spFill"></i></div>
     </div>
+    <div class="card bp">
+      <svg viewBox="0 0 260 230" role="img" aria-label="Venn diagram: purpose, brand and users overlap in the bot persona"><circle cx="95" cy="88" r="68" fill="#0D6B66" fill-opacity=".2" stroke="#0D6B66"/><circle cx="165" cy="88" r="68" fill="#FFE45C" fill-opacity=".45" stroke="#B89A00"/><circle cx="130" cy="148" r="68" fill="#C2405A" fill-opacity=".16" stroke="#C2405A"/><text x="62" y="70" font-family="Geist,sans-serif" font-size="11" fill="#141217">PURPOSE</text><text x="168" y="70" font-family="Geist,sans-serif" font-size="11" fill="#141217">BRAND</text><text x="130" y="196" text-anchor="middle" font-family="Geist,sans-serif" font-size="11" fill="#141217">USERS</text><text x="130" y="116" text-anchor="middle" font-family="Geist,sans-serif" font-size="13" font-weight="600" fill="#141217">Onboardly</text></svg>
+      <div><span class="label" style="color:var(--acc);font-weight:600">Bot persona · from the sprint exercises</span><p style="margin-top:6px">A senior colleague who has been here for years, sits next to you, and is never too busy. Warm, brief and practical. It admits what it doesn’t know, and it always ends on something you can do next.</p>
+        <div class="say"><div class="do"><h5>Sounds like</h5>“Here’s today. Nothing more than this.” “I don’t have a confirmed answer, so I won’t guess. Sandra in HR owns this. Shall I ask her?”</div><div class="dont"><h5>Never sounds like</h5>“Please provide the following 9 fields to create your profile.” “As an AI language model…”</div></div></div>
+    </div>
+    <details class="acc"><summary>The conversation flow we tested in sprint 3<span class="plus">+</span></summary><div class="body">How every conversation moves across the manager and the new hire, from the first message to an answer, a repair or a hand off. Blue is a decision the agent makes, green an answer it can stand behind, red the repair path.
+      {{FLOW}}</div></details>
     <div class="finding"><span class="num">Finding</span><p>Each sprint answered one risky question cheaply. Together they turned “a chatbot for onboarding” into three rules: give value first, give every answer an address, and hand off when it doesn’t know.</p></div>
   </div>
 </section>
@@ -521,8 +618,8 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
 <section class="gutter" id="pains">
   <div class="wrap chapter">
     <span class="eyebrow">Research · Pain map</span>
-    <h2 class="step-h">Six pains, one bull’s eye.</h2>
-    <p class="step-p">We merged four researchers’ Bull’s Eyes into one. The closer to the centre, the more pressing the pain. Tap a pain to see the quote and what Syntea does about it.</p>
+    <h2 class="step-h">From four Bull’s Eyes to six pains.</h2>
+    <p class="step-p">Each of us ran Bull’s Eye problem interviews and placed every pain by how pressing it was. We merged the four boards, clustered the stickies, and six pains held up. Tap one to see the quote and what Syntea does about it; the original boards are below.</p>
     <div class="card pain">
       <div class="bull" id="bull">
         <svg viewBox="0 0 320 320" aria-hidden="true">
@@ -536,6 +633,10 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
       <div class="pain-detail" id="painDetail" aria-live="polite"></div>
     </div>
     <label class="cover"><input type="checkbox" id="cover"> Show which pains Syntea answers</label>
+    <figure class="boards" style="margin:0" id="boards">
+      <div class="stage"><img id="boardImg" src="board-bullseye.webp" alt=""></div>
+      <div class="bar"><span class="label" id="boardCap"></span><div class="thumbs" role="group" aria-label="Boards from our Miro"></div></div>
+    </figure>
   </div>
 </section>
 
@@ -554,6 +655,15 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
     <span class="eyebrow">Define · Weeks 2 to 3</span>
     <h2 class="step-h">One question, one canvas.</h2>
     <p class="step-p">The client hoped for upskilling. Our evidence pointed at onboarding: people care about learning once they know what their manager expects. We kept one question and tested the business around it.</p>
+    <div class="card pad" style="display:flex;flex-direction:column;gap:12px"><span class="label" style="font-weight:600">Problem statements we tried</span>
+      <div class="ps">
+        <div class="ps-row"><div><b>Wouldn’t it be great if managers no longer had to guide new hires through repetitive tasks by hand?</b><span>WIBG · manager side</span></div><span class="pill">Merged</span></div>
+        <div class="ps-row"><div><b>Wouldn’t it be great if you always knew where to go for each kind of information, and who the expert is?</b><span>WIBG · new hire side</span></div><span class="pill">Merged</span></div>
+        <div class="ps-row"><div><b>A Teams AI app for onboarding managers and HR, to simplify the training process</b><span>Value proposition · unlike juggling tasks and checking trainee progress</span></div><span class="pill">Too HR centric</span></div>
+        <div class="ps-row"><div><b>A Teams AI app for new hires, to understand their role quickly</b><span>Value proposition · unlike struggling to find information</span></div><span class="pill">Kept the core</span></div>
+        <div class="ps-row pick"><div><b>An onboarding assistant for onboardees and onboarders, to cut mundane questions and gain time</b><span>Value proposition · unlike bothering your coworkers constantly</span></div><span class="pill y">Chosen</span></div>
+      </div>
+    </div>
     <div class="hmw"><span class="label">How might we</span><p>Help a new hire be productive sooner, without more work for the people onboarding them?</p><span>Onboarding that runs in the chat they already use, and never makes them ask a colleague the same question twice.</span></div>
     {{LEAN}}
   </div>
@@ -565,6 +675,27 @@ details.acc .body ul{margin:0;padding-left:18px;display:flex;flex-direction:colu
     <h2 class="step-h">Three calls that shaped the agent.</h2>
     <div class="tabs" role="tablist" aria-label="Decisions" id="decTabs"><button type="button" role="tab" aria-selected="true" data-d="0">01 · Where</button><button type="button" role="tab" aria-selected="false" data-d="1">02 · First turn</button><button type="button" role="tab" aria-selected="false" data-d="2">03 · Not knowing</button></div>
     <div class="card pad dec" id="dec" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="gutter" id="hood">
+  <div class="wrap chapter">
+    <span class="eyebrow">Under the hood · Built on Microsoft Copilot</span>
+    <h2 class="step-h">Teams is the face. Copilot is the brain.</h2>
+    <p class="step-p">People only ever see Teams. Behind it, Copilot reads the question, company files ground the answer, and the org chart finds a person when the files can’t. Tap a layer, or watch one question travel through.</p>
+    <div class="card pipe">
+      <div class="pipe-top"><b>One question, four layers</b><span class="label">Illustrative trace · “How do I log my working hours?”</span></div>
+      <div class="layers" id="layers"></div>
+      <div class="packet" aria-hidden="true"><i id="packet" style="left:0"></i></div>
+      <div class="trace" id="trace" aria-live="polite"></div>
+    </div>
+    <div class="learnmap" aria-label="How each pillar of the brief became a bot behaviour">
+      <span class="label" style="font-weight:600">From the brief to the bot: how new hires learn without a course</span>
+      <div class="lm"><div class="from"><span class="num">01</span><b>Implicit learning</b></div><span class="arrow">→</span><div class="to"><b>Learning in the task.</b> Answers arrive in the chat at the moment of need, with the document and link, so every question teaches where things live.</div></div>
+      <div class="lm"><div class="from"><span class="num">02</span><b>Continuous feedback</b></div><span class="arrow">→</span><div class="to"><b>Nudges, not reports.</b> A daily “here’s today”, a Friday recap, and a thumbs up or down on every answer that flags weak documents to their owner.</div></div>
+      <div class="lm"><div class="from"><span class="num">03</span><b>Competency measurement</b></div><span class="arrow">→</span><div class="to"><b>Progress the new hire sees first.</b> Plan steps done and questions resolved, shown to them before their manager, and never a score on the person.</div></div>
+    </div>
+    <details class="acc"><summary>What the agent stores, and what it never does<span class="plus">+</span></summary><div class="body"><ul><li>Session memory of the conversation, plus profile, OKRs and goals, kept in our own services next to Copilot.</li><li>Answers only from files the person can already open in Microsoft 365, cited with document and date.</li><li>Expert replies are stored with the expert’s name and date, so the next answer has a source too.</li><li>It never scores or evaluates employees, asks before using anyone’s data, and keeps a working path when someone declines.</li></ul></div></details>
   </div>
 </section>
 
@@ -713,12 +844,12 @@ phase(0);
 var SP=[
  {g:'Would new hires ask a bot what they won’t ask a colleague?',h:'We faked the bot. Testers messaged “Onboardly” in our team’s Slack while one of us answered by hand, then we reviewed the transcripts with the client.',b:'Wizard of Oz test in Slack',l:'Testers asked everyday questions without hesitation. But a correct answer without a link was still a dead end.',d:'Q&A at the core, and every answer ends with the exact place to go and its source.'},
  {g:'Does the conversation hold up inside Teams, with Copilot behind it?',h:'Our engineers stood up a working agent in the client’s Teams tenant. I designed its flows and copy, and we tested it with Teams accounts and sample company data.',b:'A live Onboardly bot in Teams',l:'Its first message asked for nine profile fields, and its plans arrived as spreadsheets that sent people out of Teams.',d:'Confirm what the Teams profile knows and ask one question. Show plans as cards, edited by message.'},
- {g:'Can a manager plan three hires end to end, and trust the result?',h:'We story mapped the manager scenario in story, risk and task lanes. I built it as a click dummy and we ran design critique and user tests.',b:'Story-mapped click dummy',l:'Managers need to see which document each part of a plan came from, edits must change only that part, and new hires want one day at a time.',d:'Sources on every plan, targeted edits by message, and a day-by-day view for the new hire.'}
+ {g:'Can a manager plan three hires end to end, and trust the result?',h:'We story mapped the manager scenario in story, risk and task lanes. I built it as a click dummy and we ran design critique and user tests.',b:'Story-mapped click dummy',l:'Managers need to see which document each part of a plan came from, edits must change only that part, and new hires want one day at a time.',d:'Sources on every plan, targeted edits by message, and a day-by-day view for the new hire.',img:'board-storymap.webp',cap:'Sprint 3 story map in Miro: how a manager adds her team, how the bot captures implicit knowledge, and where each piece of data lives.'}
 ];
 var spBody=document.getElementById('spBody'),spFill=document.getElementById('spFill'),cad=[].slice.call(document.querySelectorAll('.cadence span'));
 function sprint(i){var x=SP[i];document.querySelectorAll('#spTabs button').forEach(function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');});
   spFill.style.width=((i+1)/3*100)+'%';
-  spBody.innerHTML='<div class="goal"><h4>Sprint '+(i+1)+' question</h4><p>'+x.g+'</p></div><div><h4>How we ran it</h4><p>'+x.h+'</p></div><div><h4>What we learned</h4><p>'+x.l+'</p></div><div class="dir"><h4>Direction it set · '+x.b+'</h4><p>'+x.d+'</p></div>';}
+  spBody.innerHTML='<div class="goal"><h4>Sprint '+(i+1)+' question</h4><p>'+x.g+'</p></div><div><h4>How we ran it</h4><p>'+x.h+'</p></div><div><h4>What we learned</h4><p>'+x.l+'</p></div><div class="dir"><h4>Direction it set · '+x.b+'</h4><p>'+x.d+'</p></div>'+(x.img?'<div style="grid-column:1 / -1;background:#fff;padding:6px;box-shadow:inset 0 0 0 1px var(--line)"><img src="'+x.img+'" alt="'+x.cap+'" style="border-radius:8px;width:100%"><p class="small" style="padding:6px 4px 2px">'+x.cap+'</p></div>':'');}
 document.querySelectorAll('#spTabs button').forEach(function(b){b.addEventListener('click',function(){sprint(+b.dataset.s);});});sprint(0);
 var ci=0;setInterval(function(){cad.forEach(function(c,j){c.classList.toggle('on',j===ci);});ci=(ci+1)%4;},1200);
 
@@ -833,6 +964,27 @@ if(ls){var cap=ls.parentNode.querySelector('figcaption');var h=document.createEl
   var fade=function(){var max=ls.scrollWidth-ls.clientWidth;if(max<=1){ls.style.setProperty('--fl',1);ls.style.setProperty('--fr',1);h.hidden=true;return;}h.hidden=false;
     ls.style.setProperty('--fl',ls.scrollLeft>4?0:1);ls.style.setProperty('--fr',ls.scrollLeft>=max-4?1:0);h.querySelector('i').textContent=ls.scrollLeft>=max-4?'←':'→';};
   ls.addEventListener('scroll',fade,{passive:true});window.addEventListener('resize',fade);fade();}
+
+/* boards */
+var BOARDS=[['board-bullseye.webp','The master Bull’s Eye. Each researcher’s interviews sit in one quadrant; the closer to the centre, the more pressing the pain.'],['board-painmap.webp','The pain point map: every sticky from the Bull’s Eye, clustered into themes, with next steps on the right.'],['board-roadmap.webp','The research roadmap canvas we filled in before any interview: what we knew, what we assumed, what to test.']];
+var bImg=document.getElementById('boardImg'),bCap=document.getElementById('boardCap'),bTh=document.querySelector('#boards .thumbs');
+BOARDS.forEach(function(b,i){var t=document.createElement('button');t.type='button';t.setAttribute('aria-label','Show board '+(i+1));t.innerHTML='<img src="'+b[0]+'" alt="">';t.addEventListener('click',function(){board(i);});bTh.appendChild(t);});
+function board(i){bImg.src=BOARDS[i][0];bImg.alt=BOARDS[i][1];bCap.textContent=BOARDS[i][1];bTh.querySelectorAll('button').forEach(function(t,j){t.setAttribute('aria-pressed',j===i?'true':'false');});bImg.style.animation='none';void bImg.offsetWidth;bImg.style.animation='';}
+board(0);
+
+/* under the hood */
+var LAY=[
+ ['Interface','Microsoft Teams','Chat, Adaptive Cards, suggested replies, View prompts and proactive messages.',[['Teams','Mira types <b>“How do I log my working hours?”</b>'],['Teams','Signed in with single sign on, so no second login']]],
+ ['Intelligence','Microsoft Copilot','Understands the question, plans the reply and writes it in Syntea’s voice.',[['Copilot','Intent <code>find_tool</code> · risk low · confidence 0.92'],['Copilot','Plan: search company files, answer in one line, add the source']]],
+ ['Grounding','Company knowledge','Playbooks, policies, OKRs and role docs from SharePoint and team files.',[['Knowledge','Match in <b>HR handbook 2024, p. 12</b> · Time Tracker, under Productivity'],['Knowledge','Only files Mira can already open in Microsoft 365']]],
+ ['People','Org and experts','Role, manager and team from the profile, plus who knows what.',[['Org','Confident answer, so no hand off needed'],['Reply','“In <b>Time Tracker</b>, under Productivity. Log daily; Isabelle approves on Fridays.” + source + 👍 👎']]]
+];
+var layEl=document.getElementById('layers'),trace=document.getElementById('trace'),pk=document.getElementById('packet'),lyi=0,lyT=null;
+LAY.forEach(function(l,i){var b=document.createElement('button');b.type='button';b.className='layer';b.innerHTML='<span class="n">0'+(i+1)+'<em>'+l[0]+'</em></span><b>'+l[1]+'</b><span>'+l[2]+'</span>';b.addEventListener('click',function(){clearInterval(lyT);layer(i);});layEl.appendChild(b);});
+function layer(i){lyi=i;layEl.querySelectorAll('.layer').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false');});pk.style.left=(i*25)+'%';
+  var lines=[];for(var k=0;k<=i;k++)lines=lines.concat(LAY[k][3]);
+  trace.innerHTML=lines.map(function(t,j){return '<div class="tl" style="animation-delay:'+(j>=lines.length-2?(j-lines.length+2)*120:0)+'ms"><b>'+t[0]+'</b><span>'+t[1]+'</span></div>';}).join('');}
+layer(0);lyT=setInterval(function(){layer((lyi+1)%4);},3000);
 
 /* rail */
 var links=[].slice.call(document.querySelectorAll('.dock a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
