@@ -3,7 +3,7 @@
 <!-- Icons: Fluent UI System Icons (MIT), the icon set of the Microsoft Teams UI kit -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Doto:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
 <style>
 /* Layout: the Syntea room of the Uno portfolio, built on the Polygon case study. One centred 680px column, a quiet section rail on the left,
    a 28px grid wall, white cards, one accent. Teams purple replaces Polygon's magenta; Teams and Fluent details live only inside exhibits. */
@@ -13,7 +13,7 @@
   --success:#22C55E; --success-deep:#15803D; --warm:#FFC62E; --line:rgba(20,18,23,.10); --grid:rgba(20,18,23,.045);
   --night:#1F1F1F; --night-ink:#FFFFFF; --night-mute:#ADADAD;
   --sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --dot:'Doto','Courier New',monospace;
+  --dot:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
   --teams:"Segoe UI Variable","Segoe UI",-apple-system,system-ui,"Helvetica Neue",Arial,sans-serif;
   --ease:cubic-bezier(0.22,1,0.36,1);
   --sh-card:0 1px 2px rgba(30,26,40,.06),0 12px 32px -12px rgba(30,26,60,.18);
@@ -582,6 +582,15 @@ details.acc[open] summary .plus{transform:rotate(180deg)}
 .egg{border-radius:2px}
 
 .meet-bar{padding-right:8px}.meet-bar .tools{gap:2px;min-width:0}.meet-bar .tools span{width:30px}.meet-bar .leave{width:auto!important;padding:4px 10px;margin-left:4px}
+/* numbers: no dot-matrix face; Geist semibold with tabular figures, as Teams shows counts */
+.num{font-family:var(--sans);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.flow-out .big,.stat .num,.m-stats .num{letter-spacing:-0.03em}
+/* Teams app-style icon tiles for the brief's pillars */
+.ptile{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,#7F85F5,#5B5FC7 55%,#444791);box-shadow:0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.14)}
+.ptile .fi{width:20px;height:20px}
+.pillar .ptile{margin-bottom:4px;color:#fff}
+.lm .from{display:flex;align-items:center;gap:12px}
+.lm .from .label{display:block}
 /* team avatars: Teams presence */
 .team-h b{display:inline-flex;align-items:center;gap:8px}
 .team-h b .fi{color:var(--acc)}
@@ -683,9 +692,9 @@ details.acc[open] summary .plus{transform:rotate(180deg)}
     </div>
     <p class="hypo">The client’s hypothesis: <b>if learning were embedded in the tasks people already do, guided by AI and tied to the company’s OKRs, it would happen implicitly</b> and stay relevant.</p>
     <div class="pillars" aria-label="The three pillars of the brief">
-      <div class="pillar"><span class="num">01</span><b>Implicit learning</b><span>Learning happens through real tasks and situations, guided by AI.</span></div>
-      <div class="pillar"><span class="num">02</span><b>Continuous feedback</b><span>Regular, context specific feedback keeps people aware of their progress.</span></div>
-      <div class="pillar"><span class="num">03</span><b>Competency measurement</b><span>Ongoing interactions and assessments show what actually improved.</span></div>
+      <div class="pillar"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-bulb"/></svg></span><span class="label">Pillar 01</span><b>Implicit learning</b><span>Learning happens through real tasks and situations, guided by AI.</span></div>
+      <div class="pillar"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-chats"/></svg></span><span class="label">Pillar 02</span><b>Continuous feedback</b><span>Regular, context specific feedback keeps people aware of their progress.</span></div>
+      <div class="pillar"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-data"/></svg></span><span class="label">Pillar 03</span><b>Competency measurement</b><span>Ongoing interactions and assessments show what actually improved.</span></div>
     </div>
     <p class="small" style="margin-top:-12px">The three pillars of the brief, paraphrased from the client’s kickoff deck. Under the hood shows how each became a bot behaviour.</p>
     <div class="chips">
@@ -813,9 +822,9 @@ details.acc[open] summary .plus{transform:rotate(180deg)}
     </div>
     <div class="learnmap" aria-label="How each pillar of the brief became a bot behaviour">
       <span class="label" style="font-weight:600">From the brief to the bot: how new hires learn without a course</span>
-      <div class="lm"><div class="from"><span class="num">01</span><b>Implicit learning</b></div><span class="arrow">→</span><div class="to"><b>Learning in the task.</b> Answers arrive in the chat at the moment of need, with the document and link, so every question teaches where things live.</div></div>
-      <div class="lm"><div class="from"><span class="num">02</span><b>Continuous feedback</b></div><span class="arrow">→</span><div class="to"><b>Nudges, not reports.</b> A daily “here’s today”, a Friday recap, and a thumbs up or down on every answer that flags weak documents to their owner.</div></div>
-      <div class="lm"><div class="from"><span class="num">03</span><b>Competency measurement</b></div><span class="arrow">→</span><div class="to"><b>Progress the new hire sees first.</b> Plan steps done and questions resolved, shown to them before their manager, and never a score on the person.</div></div>
+      <div class="lm"><div class="from"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-bulb"/></svg></span><div><span class="label">Pillar 01</span><b>Implicit learning</b></div></div><span class="arrow">→</span><div class="to"><b>Learning in the task.</b> Answers arrive in the chat at the moment of need, with the document and link, so every question teaches where things live.</div></div>
+      <div class="lm"><div class="from"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-chats"/></svg></span><div><span class="label">Pillar 02</span><b>Continuous feedback</b></div></div><span class="arrow">→</span><div class="to"><b>Nudges, not reports.</b> A daily “here’s today”, a Friday recap, and a thumbs up or down on every answer that flags weak documents to their owner.</div></div>
+      <div class="lm"><div class="from"><span class="ptile"><svg class="fi" aria-hidden="true"><use href="#fi-data"/></svg></span><div><span class="label">Pillar 03</span><b>Competency measurement</b></div></div><span class="arrow">→</span><div class="to"><b>Progress the new hire sees first.</b> Plan steps done and questions resolved, shown to them before their manager, and never a score on the person.</div></div>
     </div>
     <details class="acc"><summary>What the agent stores, and what it never does<span class="plus">+</span></summary><div class="body"><ul><li>Session memory of the conversation, plus profile, OKRs and goals, kept in our own services next to Copilot.</li><li>Answers only from files the person can already open in Microsoft 365, cited with document and date.</li><li>Expert replies are stored with the expert’s name and date, so the next answer has a source too.</li><li>It never scores or evaluates employees, asks before using anyone’s data, and keeps a working path when someone declines.</li></ul></div></details>
   </div>
